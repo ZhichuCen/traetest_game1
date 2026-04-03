@@ -1,40 +1,78 @@
 import { useNavigate } from "react-router-dom";
 
+const features = [
+  {
+    title: "Modern Arcade Combat",
+    description: "High-speed mech duels, reactive enemy AI, and a base-race objective that keeps every second tense.",
+  },
+  {
+    title: "Readable Strategy Layer",
+    description: "Manage heat, bank overdrive, and time your dash plus nova pulse to break pressure at the right moment.",
+  },
+  {
+    title: "Playable In Minutes",
+    description: "Simple keyboard controls, escalating waves, and instant retries make it easy to jump back in.",
+  },
+];
+
+const controls = [
+  "WASD move",
+  "J / Space fire plasma shots",
+  "K vector dash",
+  "L nova pulse",
+  "P pause battle",
+];
+
 export default function Home() {
   const navigate = useNavigate();
 
-  const startGame = () => {
-    navigate("/game");
-  };
-
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4">
-      <div className="text-center space-y-8">
-        <h1 className="text-3xl md:text-5xl font-bold text-[#ff7700] animate-pulse font-pixel">
-          机甲大师对战
-        </h1>
-        <p className="text-white font-pixel text-sm">基于 RoboMaster 3V3 对抗赛规则</p>
-        <div className="flex justify-center">
-          <button 
-            onClick={startGame} 
-            className="bg-[#1a1a2e] hover:bg-[#2a2a3e] text-white font-semibold py-3 px-8 rounded-lg border-2 border-[#ff7700] transition duration-200 font-pixel text-lg"
-          >
-            开始游戏
-          </button>
-        </div>
-        <div className="bg-black/50 border border-[#1a1a2e] rounded-lg p-6 max-w-3xl">
-          <h2 className="text-xl font-bold text-white mb-4 font-pixel">游戏规则</h2>
-          <div className="text-left text-white space-y-3 font-pixel text-xs md:text-sm">
-            <p className="text-[#ff7700]">【游戏目标】</p>
-            <p>保护己方基地，摧毁对方基地！</p>
-            <p className="text-[#ff7700] mt-4">【操作说明】</p>
-            <p><span className="text-green-400">玩家1（绿色机甲）</span>：WASD移动，J键发射弹丸</p>
-            <p><span className="text-red-400">玩家2（红色机甲）</span>：方向键移动，1键发射弹丸</p>
-            <p className="text-[#ff7700] mt-4">【胜负判定】</p>
-            <p>当一方基地血量降至0时，游戏结束，另一方获胜！</p>
+    <main className="home-shell">
+      <section className="hero-panel">
+        <div className="hero-copy">
+          <span className="eyebrow">Neon Arena Protocol</span>
+          <h1>Mech duels reimagined as a stylish, modern arcade run.</h1>
+          <p className="hero-text">
+            Break the rival ace, survive drone surges, and destroy the enemy core before your
+            own defense collapses.
+          </p>
+          <div className="hero-actions">
+            <button className="primary-button" onClick={() => navigate("/game")}>
+              Launch Mission
+            </button>
+            <div className="inline-note">Solo run • keyboard only • instant restart</div>
           </div>
         </div>
-      </div>
-    </div>
+
+        <div className="hero-side">
+          <div className="status-card">
+            <span className="card-label">Mission Brief</span>
+            <h2>Win the core race.</h2>
+            <p>
+              You pilot a fast recon mech. The enemy ace adapts over time, while drones pressure
+              your side of the arena.
+            </p>
+          </div>
+          <div className="control-card">
+            <span className="card-label">Controls</span>
+            <ul>
+              {controls.map((control) => (
+                <li key={control}>{control}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="feature-grid">
+        {features.map((feature) => (
+          <article className="feature-card" key={feature.title}>
+            <span className="card-label">System Upgrade</span>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </article>
+        ))}
+      </section>
+    </main>
   );
 }
