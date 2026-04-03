@@ -4,6 +4,32 @@ Thanks to czc！
 
 # React + TypeScript + Vite
 
+## Deploy to GitHub Pages
+
+This repo is now configured for GitHub Pages with GitHub Actions.
+
+### What was added
+
+- `/.github/workflows/deploy-pages.yml` builds and deploys the site on every push to `main`
+- [`vite.config.ts`](/Users/cen/ClonedProjects/traetest_game1/vite.config.ts) reads `VITE_BASE_PATH` so asset paths work under a project page
+- [`src/App.tsx`](/Users/cen/ClonedProjects/traetest_game1/src/App.tsx) uses `HashRouter` so page refreshes do not 404 on GitHub Pages
+
+### How to publish
+
+1. Push this repo to GitHub.
+2. Open `Settings -> Pages`.
+3. Under `Build and deployment`, set `Source` to `GitHub Actions`.
+4. Push to the `main` branch, or run the `Deploy to GitHub Pages` workflow manually from the `Actions` tab.
+5. Wait for the workflow to finish, then open:
+
+`https://<your-github-username>.github.io/<your-repo-name>/`
+
+### Notes
+
+- This setup works for GitHub Pages project sites such as `/traetest_game1/`.
+- If you rename the repository, the workflow will automatically use the new repo name as the base path.
+- Routes will look like `#/game`, which avoids refresh issues on GitHub Pages static hosting.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
